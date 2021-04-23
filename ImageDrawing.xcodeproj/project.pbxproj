@@ -13,6 +13,10 @@
 		C4D49B482633656000382F87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D49B332633655F00382F87 /* ContentView.swift */; };
 		C4D49B492633656000382F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D49B342633656000382F87 /* Assets.xcassets */; };
 		C4D49B4A2633656000382F87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D49B342633656000382F87 /* Assets.xcassets */; };
+		C4D49B59263365A900382F87 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D49B58263365A900382F87 /* HomeView.swift */; };
+		C4D49B5F2633663B00382F87 /* ImpagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D49B5E2633663B00382F87 /* ImpagePicker.swift */; };
+		C4D49B632633684200382F87 /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D49B622633684200382F87 /* DrawingViewModel.swift */; };
+		C4D49B6726336C5900382F87 /* DrawingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D49B6626336C5900382F87 /* DrawingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		C4D49B412633656000382F87 /* ImageDrawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDrawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D49B432633656000382F87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4D49B442633656000382F87 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		C4D49B58263365A900382F87 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C4D49B5E2633663B00382F87 /* ImpagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpagePicker.swift; sourceTree = "<group>"; };
+		C4D49B622633684200382F87 /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
+		C4D49B6626336C5900382F87 /* DrawingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +65,9 @@
 		C4D49B312633655F00382F87 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C4D49B572633658D00382F87 /* ViewModel */,
+				C4D49B562633658100382F87 /* Model */,
+				C4D49B552633657500382F87 /* View */,
 				C4D49B322633655F00382F87 /* ImageDrawingApp.swift */,
 				C4D49B332633655F00382F87 /* ContentView.swift */,
 				C4D49B342633656000382F87 /* Assets.xcassets */,
@@ -88,6 +99,31 @@
 				C4D49B442633656000382F87 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		C4D49B552633657500382F87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4D49B58263365A900382F87 /* HomeView.swift */,
+				C4D49B5E2633663B00382F87 /* ImpagePicker.swift */,
+				C4D49B6626336C5900382F87 /* DrawingScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4D49B562633658100382F87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C4D49B572633658D00382F87 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4D49B622633684200382F87 /* DrawingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,7 +223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D49B59263365A900382F87 /* HomeView.swift in Sources */,
 				C4D49B472633656000382F87 /* ContentView.swift in Sources */,
+				C4D49B6726336C5900382F87 /* DrawingScreen.swift in Sources */,
+				C4D49B632633684200382F87 /* DrawingViewModel.swift in Sources */,
+				C4D49B5F2633663B00382F87 /* ImpagePicker.swift in Sources */,
 				C4D49B452633656000382F87 /* ImageDrawingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
