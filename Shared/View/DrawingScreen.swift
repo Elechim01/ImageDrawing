@@ -13,35 +13,84 @@ struct DrawingScreen: View {
     var body: some View {
         ZStack{
             GeometryReader{ proxy -> AnyView in
-                let size = proxy.frame(in: .global).size
+                let size = proxy.frame(in: .global)
+                DispatchQueue.main.async {
+                    if model.rect == .zero{
+                        model.rect = size
+                    }
+                }
                 return AnyView(
             //            UIKIT Pencil Kit Drawing View...
                     ZStack {
-                        CanvasView(canvas: $model.canvas, imageData: $model.imageData, toolPicker: $model.toolPicker, rect: size)
+                        CanvasView(canvas: $model.canvas, imageData: $model.imageData, toolPicker: $model.toolPicker, rect: size.size)
 //                        Custom Texts
-                        
+//                        disply text boxes....
+                        ForEach(model.textBoxes){ box in
+                            Text(model.textBoxes[model.currentIndex].id == box.id && model.addnewBox ? "" :  box.text)
+//                                you can also include text size in model
+//                                and can use those text siezes in there text boxes..
+                                .font(.system(size:30))
+                                .fontWeight(box.isbold ? .bold : .none)
+                                .foregroundColor(box.textColor)
+                                .offset(box.offset)
+//                            drag gesture...
+                                .gesture(DragGesture().onChanged({ (value) in
+                                    let current = value.translation
+//                                    Adding with last Offset...
+                                    let lastOffset = box.lastOffset
+                                    let newTranslation = CGSize(width: lastOffset.width + current.width, height: lastOffset.height + current.height)
+                                    model.textBoxes[getIndex(textBox: box)].offset = newTranslation
+                                    
+                                }).onEnded({ (value) in
+//                                    saving the last offset for exact drag postion....
+                                    model.textBoxes[getIndex(textBox: box)].lastOffset = value.translation
+                                }))
+//                            editing the typed one...
+                                .onLongPressGesture {
+//                                    closing the toolbar...
+                                    model.toolPicker.setVisible(false, forFirstResponder: model.canvas)
+                                    model.canvas.resignFirstResponder()
+                                    model.currentIndex = getIndex(textBox: box)
+                                    withAnimation{
+                                        model.addnewBox = true
+                                    }
+                                }
+                        }
                     })
-                
             }
 
         }
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    
+                    model.saveImage()
                 }, label: {
                     Text("Save")
                 })
-               
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    
+//                    creazione One New Box...
+                    model.textBoxes.append(Textbox())
+//                    updating index...
+                    model.currentIndex = model.textBoxes.count - 1
+                    withAnimation{
+                        model.addnewBox.toggle()
+                    }
+//                    closng the tool bar...
+                    model.toolPicker.setVisible(false, forFirstResponder: model.canvas)
+                    model.canvas.resignFirstResponder()
                 }, label: {
                     Image(systemName: "plus")
                 })
             }
         })
+    }
+    func getIndex(textBox : Textbox) -> Int {
+        let index = model.textBoxes.firstIndex { (box) -> Bool in
+            return textBox.id == box.id
+        } ?? 0
+        return index
     }
 }
 
